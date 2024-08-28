@@ -121,6 +121,12 @@ def deploy_pool(
     deployment_file_path = Path(BASE_DIR, "deployments", f"{chain}.yaml")
     deployment_file = YamlDeploymentFile(deployment_file_path)
     factory_params = deployment_file.get_contract_deployment(("contracts", "amm", pool_type.value, "factory"))
+    factory = factory_params.get_contract()
 
-    factory = get_contract(Path(factory_params.contract_path), factory_params.address)
+    erc20_obj = boa.load_partial(Path(BASE_DIR, "tutorial", "contracts", "ERC20mock.vy"))
+    coins_obj = [erc20_obj.at(coin) for coin in coins]
+
+    for coin in coins_obj:
+        assert coin.decimals() > 0, "Coin has no decimals"
+
     factory.deploy_pool(name, symbol, coins, 0, *CryptoPoolPresets().model_dump().values())

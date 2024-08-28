@@ -1,0 +1,12 @@
+network_name: tac_dev
+chain_id: 1166844811
+rollup_type: polygon_cdk
+explorer_base_url: https://tac-dev-blockscout.eu-north-2.gateway.fm/
+
+# Not related to development, for further integrations
+layer: 2
+native_currency_symbol: ETH
+native_currency_coingecko_id: ethereum
+platform_coingecko_id: ethereum
+public_rpc_url: https://tac-dev-rpc.eu-north-2.gateway.fm
+wrapped_native_token: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
